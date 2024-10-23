@@ -1,0 +1,25 @@
+{
+  "name": "bun-experiment",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "dev": "bun run --hot src/index.ts",
+    "prisma:generate": "bunx prisma generate",
+    "prisma:dev:deploy": "bunx prisma db push",
+    "db:dev:rm": "docker compose rm database_experiment -s -f -v",
+    "db:dev:up": "docker compose up database_experiment -d",
+    "db:dev:restart": "bun run db:dev:rm && bun run db:dev:up  && bun run prisma:dev:deploy && bun run prisma:generate && bun run dev"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "prisma": "^5.21.1"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.21.1",
+    "@types/jsonwebtoken": "^9.0.7",
+    "jsonwebtoken": "^9.0.2"
+  }
+}
